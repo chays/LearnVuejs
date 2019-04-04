@@ -2,14 +2,24 @@
   <div class="inputBox shadow">
     <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo" placeholder="Type what you have to do">
     <span v-on:click="addTodo" class="addContainer"><i class="addBtn fas fa-plus" aria-hidden="true"></i></span>
+
+    <Modal v-if="showModal" @close="showModal=false">
+      <h3 slot="header">경고</h3>
+      <span slot="footer" @click="showModal=false">
+        할 일을 입력하세요
+        <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
+      </span>
+    </Modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/Modal.vue';
 export default {
   data(){
     return{
-      newTodoItem:''
+      newTodoItem:'',
+      showModal:false,
     }
   },
   methods:{
@@ -23,6 +33,9 @@ export default {
     clearInput(){
       this.newTodoItem='';
     }
+  },
+  components:{
+    Modal,
   }
 }
 </script>

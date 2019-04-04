@@ -1,11 +1,11 @@
 <template>
   <div>
-    <ul>
+    <transition-group name="list" tag="ul">
       <li v-for="(todoItem,index) in propsdata" :key="index" class="shadow">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>{{todoItem}}
         <span class="removeBtn" type="button" @click="removeTodo(todoItem,index)"><i class="far fa-trash-alt" aria-hidden="true"></i></span>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -46,4 +46,13 @@ export default {
     margin-left:auto;
     color:#de4343;
   }
+
+  .list-enter-active, .list-leave-active{
+    transition:all 1s;
+  }
+  .list-enter, .list-leave-to{
+    opacity:0;
+    transform:translateY(30px);
+  }
+
 </style>
